@@ -72,7 +72,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :enveloop
   config.action_mailer.enveloop_settings = {
-    api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY),
+    api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY)
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

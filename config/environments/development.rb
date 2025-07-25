@@ -42,7 +42,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :enveloop
   config.action_mailer.enveloop_settings = {
-    api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY),
+    api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY)
   }
 
   # Print deprecation notices to the Rails logger.
