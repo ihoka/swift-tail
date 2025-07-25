@@ -12,7 +12,7 @@ run = [
 [tasks."rails:dev"]
 description = "Run Rails in development mode"
 run = [
-    "bundle exec rails server"
+    "bin/dev"
 ]
 
 [tasks."docker:build"]
