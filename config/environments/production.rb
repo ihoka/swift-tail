@@ -1,3 +1,4 @@
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -58,7 +59,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
+  config.action_mailer.default_url_options = { host: "flyswifttail.com.com" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -68,6 +69,11 @@ Rails.application.configure do
   #   port: 587,
   #   authentication: :plain
   # }
+
+  config.action_mailer.delivery_method = :enveloop
+  config.action_mailer.enveloop_settings = {
+    api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY),
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
