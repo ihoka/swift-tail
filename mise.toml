@@ -8,3 +8,8 @@ run = [
     "bundle exec rubocop --autocorrect-all"
 ]
 
+[tasks."rails:dev"]
+description = "Run Rails in development mode"
+run = [
+    "bundle exec rails server"
+]
