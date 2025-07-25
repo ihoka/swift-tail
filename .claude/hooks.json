@@ -1,0 +1,8 @@
+{
+  "edit-accepted": [
+    {
+      "command": "mise rubocop:fix",
+      "when": "file_extension == 'rb'"
+    }
+  ]
+}
