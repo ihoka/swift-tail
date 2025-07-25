@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "swift_tail_development",
+            "database": "swift_tail_development",
+            "username": "ihoka",
+            "password": "ihoka"
+        }
+    ]
+}
