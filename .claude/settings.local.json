@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(bundle install:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

@@ -8,7 +8,8 @@ SwiftTail is a Rails 8.0 application using modern Rails conventions with:
 - SQLite3 database with Solid Cache, Solid Queue, and Solid Cable
 - Propshaft for asset pipeline
 - Importmap for JavaScript with Stimulus and Turbo
-- Kamal for deployment
+- Tailwind CSS for styling
+- Fly.io deployment via GitHub Actions
 - Docker containerization
 
 ## Development Commands
@@ -68,7 +69,7 @@ bin/brakeman                 # Run security analysis
 
 ### Technology Stack
 - **Backend**: Rails 8.0, Puma server
-- **Frontend**: Turbo + Stimulus (Hotwire), Importmap
+- **Frontend**: Turbo + Stimulus (Hotwire), Importmap, Tailwind CSS
 - **Database**: SQLite3 with Solid adapters
-- **Deployment**: Fly.io with Docker
+- **Deployment**: Fly.io with Docker via GitHub Actions
 - **Testing**: Minitest with Capybara/Selenium for system tests

@@ -1,6 +1,6 @@
 # SwiftTail
 
-A modern Rails 8.0 application using Hotwire and SQLite.
+A modern Rails 8.0 application using Hotwire, Tailwind CSS, and SQLite.
 
 ## Prerequisites
 
