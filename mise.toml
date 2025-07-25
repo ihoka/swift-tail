@@ -2,3 +2,9 @@
 ruby = "latest"
 lazygit = "latest"
 
+[tasks."rubocop:fix"]
+description = "Fix RuboCop errors automatically"
+run = [
+    "bundle exec rubocop --autocorrect-all"
+]
+
