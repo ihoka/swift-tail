@@ -13,3 +13,10 @@ description = "Run Rails in development mode"
 run = [
     "bundle exec rails server"
 ]
+
+
+[tasks."docker:build"]
+description = "Build the production Docker image"
+run = [
+    "docker build -t swift-tail ."
+]
