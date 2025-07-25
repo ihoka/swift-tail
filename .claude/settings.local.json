@@ -4,7 +4,8 @@
       "Bash(bundle install:*)",
       "Bash(mkdir:*)",
       "Bash(find:*)",
-      "Bash(bin/rails test:system:*)"
+      "Bash(bin/rails test:system:*)",
+      "Bash(bin/rails test:*)"
     ],
     "deny": []
   }

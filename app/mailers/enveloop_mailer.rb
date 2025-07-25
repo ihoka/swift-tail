@@ -2,14 +2,18 @@ class EnveloopMailer < ActionMailer::Base
 
    include Rails.application.routes.url_helpers
 
-   def new_contact_email(recipient, comment)
+   def new_lead_email(lead, recipient = 'istvan.hoka@gmail.com')
       enveloop.send_message(
          template: 'new-lead',
          to: recipient,
-         from: 'hello@flyswifttail.com',
-         subject: subject,
-         template_variables:{
-            # Put form fields here
+         from: 'istvan.hoka@gmail.com',
+         subject: 'New Lead Submission',
+         template_variables: {
+            from: lead.from,
+            to: lead.to,
+            email: lead.email,
+            phone: lead.phone,
+            created_at: lead.created_at.strftime('%B %d, %Y at %I:%M %p')
          }
       )
    end
@@ -17,7 +21,7 @@ class EnveloopMailer < ActionMailer::Base
    private
 
    def enveloop
-      @enveloop ||= Enveloop::Client.new(api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY)
+      @enveloop ||= Enveloop::Client.new(api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY))
    end
 
 
