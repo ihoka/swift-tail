@@ -5,10 +5,14 @@ on:
   push:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  scan_ruby:
+  security:
+    name: Security Analysis
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,26 +23,21 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+      - name: Run Brakeman security scan
+        run: bin/brakeman --no-pager --format json --output brakeman-results.json
 
-  scan_js:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Upload Brakeman results
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          name: brakeman-results
+          path: brakeman-results.json
 
-      - name: Scan for security vulnerabilities in JavaScript dependencies
+      - name: Scan JavaScript dependencies
         run: bin/importmap audit
 
   lint:
+    name: Code Quality
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -50,20 +49,26 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+      - name: Run RuboCop
+        run: bin/rubocop --format github --format json --out rubocop-results.json
+
+      - name: Upload RuboCop results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rubocop-results
+          path: rubocop-results.json
 
   test:
+    name: Test Suite
     runs-on: ubuntu-latest
-
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    strategy:
+      fail-fast: false
+      matrix:
+        test_type: [unit, system]
+    
     steps:
-      - name: Install packages
+      - name: Install system packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
 
       - name: Checkout code
@@ -75,16 +80,60 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run tests
+      - name: Prepare test database
         env:
           RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test:prepare
 
-      - name: Keep screenshots from failed system tests
+      - name: Run unit tests
+        if: matrix.test_type == 'unit'
+        env:
+          RAILS_ENV: test
+        run: bin/rails test --verbose
+
+      - name: Run system tests
+        if: matrix.test_type == 'system'
+        env:
+          RAILS_ENV: test
+        run: bin/rails test:system --verbose
+
+      - name: Upload test coverage
+        if: matrix.test_type == 'unit'
         uses: actions/upload-artifact@v4
-        if: failure()
         with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
+          name: coverage-report
+          path: coverage/
           if-no-files-found: ignore
+
+      - name: Upload system test screenshots
+        if: matrix.test_type == 'system' && failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: system-test-screenshots
+          path: tmp/screenshots/
+          if-no-files-found: ignore
+
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Precompile assets
+        env:
+          RAILS_ENV: production
+          SECRET_KEY_BASE: test-key-for-asset-compilation
+        run: bin/rails assets:precompile
+
+      - name: Verify application loads
+        env:
+          RAILS_ENV: production
+          SECRET_KEY_BASE: test-key-for-asset-compilation
+        run: timeout 30s bin/rails runner "puts 'Application loaded successfully'"
