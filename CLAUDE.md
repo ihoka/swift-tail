@@ -47,12 +47,9 @@ bin/rubocop                  # Run RuboCop linter
 bin/brakeman                 # Run security analysis
 ```
 
-### Deployment (Kamal)
+### Deployment (Fly.io)
 ```bash
-bin/kamal deploy             # Deploy application
-bin/kamal console            # Remote Rails console
-bin/kamal shell              # Remote shell access
-bin/kamal logs               # View application logs
+# Deployment handled automatically via GitHub Actions on push to main
 ```
 
 ## Architecture
@@ -67,11 +64,11 @@ bin/kamal logs               # View application logs
 ### Key Configuration
 - **Autoload**: `config.autoload_lib(ignore: %w[assets tasks])` - lib/ directory auto-loaded except assets/tasks
 - **Testing**: Parallel test execution enabled with `parallelize(workers: :number_of_processors)`
-- **Deployment**: Configured for single-server deployment with SSL via Let's Encrypt
+- **Deployment**: Deployed to Fly.io via GitHub Actions
 
 ### Technology Stack
 - **Backend**: Rails 8.0, Puma server
 - **Frontend**: Turbo + Stimulus (Hotwire), Importmap
 - **Database**: SQLite3 with Solid adapters
-- **Deployment**: Kamal with Docker
+- **Deployment**: Fly.io with Docker
 - **Testing**: Minitest with Capybara/Selenium for system tests
