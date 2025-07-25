@@ -1,11 +1,13 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(bundle install:*)",
-      "Bash(mkdir:*)",
-      "Bash(find:*)",
-      "Bash(convert:*)"
-    ],
-    "deny": []
-  }
+      "permissions": {
+            "allow": [
+                  "Bash(bundle install:*)",
+                  "Bash(mkdir:*)",
+                  "Bash(find:*)",
+                  "Bash(convert:*)",
+                  "Bash(bin/rails test:system:*)",
+                  "Bash(bin/rails test:*)"
+            ],
+            "deny": []
+      }
 }
