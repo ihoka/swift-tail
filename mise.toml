@@ -1,28 +1,4 @@
 [tools]
-ruby = "latest"
 lazygit = "latest"
 flyctl = "latest"
-
-[tasks."rubocop:fix"]
-description = "Fix RuboCop errors automatically"
-run = [
-    "bundle exec rubocop --autocorrect-all"
-]
-
-[tasks."rails:dev"]
-description = "Run Rails in development mode"
-run = [
-    "bin/dev"
-]
-
-[tasks."docker:build"]
-description = "Build the production Docker image"
-run = [
-    "docker build -t swift-tail ."
-]
-
-[tasks."fly:logs"]
-description = "Tail logs from Fly.io"
-run = [
-    "fly logs --app swift-tail"
-]
+gh = "latest"
