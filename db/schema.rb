@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_25_150424) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_153416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "airports", force: :cascade do |t|
+    t.string "iata_code", limit: 3
+    t.string "icao_code", limit: 10
+    t.string "name", null: false
+    t.string "city"
+    t.string "country"
+    t.string "country_code", limit: 2
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.integer "elevation_ft"
+    t.string "type"
+    t.boolean "private_jet_capable", default: false
+    t.string "timezone"
+    t.text "runways_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["iata_code"], name: "index_airports_on_iata_code"
+    t.index ["icao_code"], name: "index_airports_on_icao_code"
+    t.index ["latitude", "longitude"], name: "index_airports_on_latitude_and_longitude"
+    t.index ["private_jet_capable"], name: "index_airports_on_private_jet_capable"
+  end
 
   create_table "leads", force: :cascade do |t|
     t.string "from"

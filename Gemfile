@@ -63,3 +63,5 @@ end
 gem "tailwindcss-rails", "~> 4.3"
 
 gem "enveloop", "~> 0.2.0"
+
+gem "csv", "~> 3.3"

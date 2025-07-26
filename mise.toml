@@ -2,3 +2,9 @@
 lazygit = "latest"
 flyctl = "latest"
 gh = "latest"
+
+[env]
+_.path = [
+    "./bin"
+]
+
