@@ -3,17 +3,17 @@ class EnveloopMailer < ActionMailer::Base
 
    def new_lead_email(lead, recipient = "istvan.hoka@gmail.com")
       enveloop.send_message(
-         template: "new-lead",
          to: recipient,
          from: "istvan.hoka@gmail.com",
          subject: "New Lead Submission",
-         template_variables: {
-            from: lead.from,
-            to: lead.to,
-            email: lead.email,
-            phone: lead.phone,
-            created_at: lead.created_at.strftime("%B %d, %Y at %I:%M %p")
-         }
+         html: <<~HTML
+            <h1>New Lead Submission</h1>
+            <p><strong>From:</strong> #{lead.from}</p>
+            <p><strong>To:</strong> #{lead.to}</p>
+            <p><strong>Email:</strong> #{lead.email}</p>
+            <p><strong>Phone:</strong> #{lead.phone}</p>
+            <p><strong>Created At:</strong> #{lead.created_at.strftime("%Y-%m-%d %H:%M:%S")}</p>
+         HTML
       )
    end
 
