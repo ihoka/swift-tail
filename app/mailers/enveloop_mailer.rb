@@ -1,10 +1,10 @@
 class EnveloopMailer < ActionMailer::Base
    include Rails.application.routes.url_helpers
 
-   def new_lead_email(lead, recipient = "istvan.hoka@gmail.com")
+   def new_lead_email(lead, recipient = "contact@flyswifttail.com")
       enveloop.send_message(
          to: recipient,
-         from: "istvan.hoka@gmail.com",
+         from: "contact@flyswifttail.com",
          subject: "New Lead Submission",
          html: <<~HTML
             <h1>New Lead Submission</h1>
@@ -20,6 +20,10 @@ class EnveloopMailer < ActionMailer::Base
    private
 
    def enveloop
-      @enveloop ||= Enveloop::Client.new(api_key: Rails.application.credentials.dig(:enveloop, :ENVELOOP_LIVE_API_KEY))
+      @enveloop ||= Enveloop::Client.new(api_key: api_key)
+   end
+
+   def api_key
+      Rails.application.credentials.dig(Rails.env, :enveloop_api_key)
    end
 end
