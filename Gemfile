@@ -67,3 +67,5 @@ gem "enveloop", "~> 0.2.0"
 gem "csv", "~> 3.3"
 
 gem "trestle", "~> 0.10.1"
+
+gem "trestle-auth", "~> 0.5.0"
