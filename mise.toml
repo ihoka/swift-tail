@@ -2,6 +2,7 @@
 lazygit = "latest"
 flyctl = "latest"
 gh = "latest"
+claude = "latest"
 
 [env]
 _.path = [
