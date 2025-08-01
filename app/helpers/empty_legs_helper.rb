@@ -1,0 +1,2 @@
+module EmptyLegsHelper
+end
