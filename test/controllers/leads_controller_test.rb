@@ -7,15 +7,10 @@ class LeadsControllerTest < ActionDispatch::IntegrationTest
     mock_mailer = Minitest::Mock.new
     mock_mailer.expect :call, nil, [ Lead ]
 
+    lead_attributes = attributes_for(:lead)
+
     EnveloopMailer.stub :new_lead_email, mock_mailer do
-      post leads_path, params: {
-        lead: {
-          from: "New York",
-          to: "Los Angeles",
-          email: "test@example.com",
-          phone: "+1 (555) 123-4567"
-        }
-      }
+      post leads_path, params: { lead: lead_attributes }
     end
 
     assert_redirected_to root_path
@@ -23,10 +18,10 @@ class LeadsControllerTest < ActionDispatch::IntegrationTest
 
     # Verify lead was created
     lead = Lead.last
-    assert_equal "New York", lead.from
-    assert_equal "Los Angeles", lead.to
-    assert_equal "test@example.com", lead.email
-    assert_equal "+1 (555) 123-4567", lead.phone
+    assert_equal lead_attributes[:from], lead.from
+    assert_equal lead_attributes[:to], lead.to
+    assert_equal lead_attributes[:email], lead.email
+    assert_equal lead_attributes[:phone], lead.phone
 
     # Verify mock was called
     mock_mailer.verify
