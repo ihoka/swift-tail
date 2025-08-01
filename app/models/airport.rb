@@ -1,11 +1,13 @@
 # app/models/airport.rb
 class Airport < ApplicationRecord
+  self.inheritance_column = nil
+
   validates :name, presence: true
   validates :icao_code, presence: true, uniqueness: true
   validates :iata_code, uniqueness: true, allow_nil: true
 
   scope :private_jet_capable, -> { where(private_jet_capable: true) }
-  scope :by_country, ->(code) { where(country_code: code) }
+  scope :by_iata_code, ->(iata_code) { find_by(iata_code: iata_code&.upcase&.strip) }
   scope :major_airports, -> { where(type: %w[large_airport medium_airport]) }
 
   before_validation :normalize_codes

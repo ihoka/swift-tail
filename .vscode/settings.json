@@ -10,5 +10,6 @@
             "username": "ihoka",
             "password": "ihoka"
         }
-    ]
+    ],
+    "rubyLsp.formatter": "rubocop"
 }

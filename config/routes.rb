@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get "empty_legs/index"
+  get "empty-leg-near-me" => "empty_legs#near_me", as: :empty_leg_near_me
+
+  get "airport/:iata_code/empty-legs" => "empty_legs#by_airport", as: :airport_empty_legs
+
   resources :leads, only: [ :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
