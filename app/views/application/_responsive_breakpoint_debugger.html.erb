@@ -1,0 +1,9 @@
+<% if Rails.env.development? %>
+<div class="fixed bottom-4 left-4 z-50 bg-black text-white text-xs px-2 py-1 rounded shadow-lg font-mono">
+    <span class="sm:hidden">default (&lt;640px)</span>
+    <span class="hidden sm:inline md:hidden">sm (≥640px)</span>
+    <span class="hidden md:inline lg:hidden">md (≥768px)</span>
+    <span class="hidden lg:inline xl:hidden">lg (≥1024px)</span>
+    <span class="hidden xl:inline">xl (≥1280px)</span>
+</div>
+<% end %>
