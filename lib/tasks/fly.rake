@@ -12,6 +12,6 @@ namespace :fly do
   end
 
   task :logs do
-    sh 'fly logs --app swift-tail'
+    sh "fly logs --app swift-tail"
   end
 end
