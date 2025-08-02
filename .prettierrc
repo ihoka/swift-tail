@@ -1,6 +1,8 @@
 {
     "plugins": [
-        "prettier-plugin-tailwindcss"
+        "prettier-plugin-tailwindcss",
+        "@prettier/plugin-ruby",
+        "prettier-plugin-erb"
     ],
     "tailwindStylesheet": "app/assets/tailwind/application.css"
 }

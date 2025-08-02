@@ -1,15 +1,19 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
-            "name": "swift_tail_development",
-            "database": "swift_tail_development",
-            "username": "ihoka",
-            "password": "ihoka"
-        }
-    ],
-    "rubyLsp.formatter": "rubocop"
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "swift_tail_development",
+      "database": "swift_tail_development",
+      "username": "ihoka",
+      "password": "ihoka"
+    }
+  ],
+  "rubyLsp.formatter": "none",
+  "[ruby]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
 }
