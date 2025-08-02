@@ -1,5 +1,5 @@
 <!-- Flight Search Form -->
-<form class="space-y-6">
+<form class="space-y-6" data-controller="airport-search">
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
     <!-- From Autocomplete -->
     <div>
@@ -11,6 +11,8 @@
             name="from"
             type="text"
             placeholder="Departure airport"
+            data-airport-search-target="from"
+            data-action="input->airport-search#searchFrom"
             class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 pr-10">
         <button type="button" class="absolute inset-y-0 right-0 flex items-center px-3">
             <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -19,39 +21,7 @@
         </button>
         </div>
 
-        <el-options popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
-        <el-option value="JFK" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">John F. Kennedy International Airport</div>
-            <div class="text-gray-500 text-xs">JFK - New York, NY</div>
-        </el-option>
-        <el-option value="LAX" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Los Angeles International Airport</div>
-            <div class="text-gray-500 text-xs">LAX - Los Angeles, CA</div>
-        </el-option>
-        <el-option value="ORD" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">O'Hare International Airport</div>
-            <div class="text-gray-500 text-xs">ORD - Chicago, IL</div>
-        </el-option>
-        <el-option value="MIA" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Miami International Airport</div>
-            <div class="text-gray-500 text-xs">MIA - Miami, FL</div>
-        </el-option>
-        <el-option value="DFW" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Dallas/Fort Worth International Airport</div>
-            <div class="text-gray-500 text-xs">DFW - Dallas, TX</div>
-        </el-option>
-        <el-option value="SFO" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">San Francisco International Airport</div>
-            <div class="text-gray-500 text-xs">SFO - San Francisco, CA</div>
-        </el-option>
-        <el-option value="LAS" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">McCarran International Airport</div>
-            <div class="text-gray-500 text-xs">LAS - Las Vegas, NV</div>
-        </el-option>
-        <el-option value="ATL" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Hartsfield-Jackson Atlanta International Airport</div>
-            <div class="text-gray-500 text-xs">ATL - Atlanta, GA</div>
-        </el-option>
+        <el-options data-airport-search-target="fromOptions" popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
         </el-options>
     </el-autocomplete>
     </div>
@@ -66,6 +36,8 @@
             name="to"
             type="text"
             placeholder="Destination airport"
+            data-airport-search-target="to"
+            data-action="input->airport-search#searchTo"
             class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 pr-10">
         <button type="button" class="absolute inset-y-0 right-0 flex items-center px-3">
             <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -74,39 +46,7 @@
         </button>
         </div>
 
-        <el-options popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
-        <el-option value="JFK" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">John F. Kennedy International Airport</div>
-            <div class="text-gray-500 text-xs">JFK - New York, NY</div>
-        </el-option>
-        <el-option value="LAX" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Los Angeles International Airport</div>
-            <div class="text-gray-500 text-xs">LAX - Los Angeles, CA</div>
-        </el-option>
-        <el-option value="ORD" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">O'Hare International Airport</div>
-            <div class="text-gray-500 text-xs">ORD - Chicago, IL</div>
-        </el-option>
-        <el-option value="MIA" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Miami International Airport</div>
-            <div class="text-gray-500 text-xs">MIA - Miami, FL</div>
-        </el-option>
-        <el-option value="DFW" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Dallas/Fort Worth International Airport</div>
-            <div class="text-gray-500 text-xs">DFW - Dallas, TX</div>
-        </el-option>
-        <el-option value="SFO" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">San Francisco International Airport</div>
-            <div class="text-gray-500 text-xs">SFO - San Francisco, CA</div>
-        </el-option>
-        <el-option value="LAS" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">McCarran International Airport</div>
-            <div class="text-gray-500 text-xs">LAS - Las Vegas, NV</div>
-        </el-option>
-        <el-option value="ATL" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-            <div class="font-medium">Hartsfield-Jackson Atlanta International Airport</div>
-            <div class="text-gray-500 text-xs">ATL - Atlanta, GA</div>
-        </el-option>
+        <el-options data-airport-search-target="toOptions" popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
         </el-options>
     </el-autocomplete>
     </div>
