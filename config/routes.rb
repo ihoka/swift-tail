@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "airport/:iata_code/empty-legs" => "empty_legs#by_airport", as: :airport_empty_legs
 
   resources :leads, only: [ :create ]
+  resources :airports, only: [ :index ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

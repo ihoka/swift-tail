@@ -9,6 +9,7 @@ class Airport < ApplicationRecord
   scope :private_jet_capable, -> { where(private_jet_capable: true) }
   scope :by_iata_code, ->(iata_code) { find_by(iata_code: iata_code&.upcase&.strip) }
   scope :major_airports, -> { where(type: %w[large_airport medium_airport]) }
+  scope :search, ->(query) { where("name ILIKE ? OR iata_code ILIKE ?", "%#{query}%", "%#{query}%") }
 
   before_validation :normalize_codes
 
