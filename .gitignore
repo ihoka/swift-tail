@@ -36,3 +36,4 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 swift_tail_development.session.sql
+node_modules
