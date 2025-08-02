@@ -83,3 +83,7 @@ bin/brakeman                 # Run security analysis
 - **Database**: SQLite3 with Solid adapters
 - **Deployment**: Fly.io with Docker via GitHub Actions
 - **Testing**: Minitest with Capybara/Selenium for system tests
+
+## Frontend development
+
+- Use Hotwire and Stimulus best practices. Query Context7 MCP.

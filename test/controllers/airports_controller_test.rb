@@ -7,16 +7,15 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 3, json_response.length
+    # Should render HTML with airport options
+    assert_select "el-option", count: 3
     
-    airport = json_response.first
-    assert_includes airport.keys, "id"
-    assert_includes airport.keys, "name"
-    assert_includes airport.keys, "iata_code"
-    assert_includes airport.keys, "icao_code"
-    assert_includes airport.keys, "city"
-    assert_includes airport.keys, "country"
+    airports.each do |airport|
+      assert_select "el-option[value='#{airport.iata_code}']" do
+        assert_select "div.font-medium", text: airport.name
+        assert_select "div.text-gray-500", text: "#{airport.iata_code} - #{airport.city}, #{airport.country}"
+      end
+    end
   end
 
   test "should search airports by name" do
@@ -26,9 +25,10 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url, params: { query: "Angeles" }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 1, json_response.length
-    assert_equal matching_airport.id, json_response.first["id"]
+    assert_select "el-option", count: 1
+    assert_select "el-option[value='#{matching_airport.iata_code}']" do
+      assert_select "div.font-medium", text: matching_airport.name
+    end
   end
 
   test "should search airports by iata code" do
@@ -38,9 +38,10 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url, params: { query: "LAX" }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 1, json_response.length
-    assert_equal matching_airport.id, json_response.first["id"]
+    assert_select "el-option", count: 1
+    assert_select "el-option[value='#{matching_airport.iata_code}']" do
+      assert_select "div.font-medium", text: matching_airport.name
+    end
   end
 
   test "should search airports case insensitively" do
@@ -49,9 +50,10 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url, params: { query: "lax" }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 1, json_response.length
-    assert_equal matching_airport.id, json_response.first["id"]
+    assert_select "el-option", count: 1
+    assert_select "el-option[value='#{matching_airport.iata_code}']" do
+      assert_select "div.font-medium", text: matching_airport.name
+    end
   end
 
   test "should limit results to 7 airports" do
@@ -60,18 +62,16 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 7, json_response.length
+    assert_select "el-option", count: 7
   end
 
-  test "should return empty array when no matches found" do
+  test "should return empty result when no matches found" do
     create(:airport, name: "Test Airport", iata_code: "TST")
     
     get airports_url, params: { query: "NONEXISTENT" }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 0, json_response.length
+    assert_select "el-option", count: 0
   end
 
   test "should handle empty query parameter" do
@@ -80,8 +80,7 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url, params: { query: "" }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 3, json_response.length
+    assert_select "el-option", count: 3
   end
 
   test "should handle whitespace-only query parameter" do
@@ -90,7 +89,6 @@ class AirportsControllerTest < ActionDispatch::IntegrationTest
     get airports_url, params: { query: "   " }
     assert_response :success
     
-    json_response = JSON.parse(response.body)
-    assert_equal 3, json_response.length
+    assert_select "el-option", count: 3
   end
 end

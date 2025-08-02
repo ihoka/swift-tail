@@ -3,6 +3,8 @@ FactoryBot.define do
     name { "Test Airport" }
     sequence(:icao_code) { |n| "T#{n.to_s.rjust(3, '0')}" }
     sequence(:iata_code) { |n| "T#{n.to_s.rjust(2, '0')}" }
+    city { "Test City" }
+    country { "United States" }
     private_jet_capable { true }
     country_code { "US" }
     type { "medium_airport" }

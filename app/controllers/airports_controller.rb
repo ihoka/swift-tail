@@ -2,12 +2,12 @@ class AirportsController < ApplicationController
   def index
     query = params[:query]&.strip
     
-    airports = if query.present?
-                 Airport.search(query)
-               else
-                 Airport.all
-               end
+    @airports = if query.present?
+                  Airport.search(query)
+                else
+                  Airport.all
+                end.limit(7)
     
-    render json: airports.limit(7).select(:id, :name, :iata_code, :icao_code, :city, :country)
+    render partial: 'airport_options', locals: { airports: @airports }
   end
 end

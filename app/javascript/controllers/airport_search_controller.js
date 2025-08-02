@@ -27,10 +27,10 @@ export default class extends Controller {
     url.searchParams.set("query", query)
 
     fetch(url)
-      .then(response => response.json())
-      .then(airports => {
-        optionsTarget.innerHTML = this.buildOptions(airports)
-        if (airports.length > 0) {
+      .then(response => response.text())
+      .then(html => {
+        optionsTarget.innerHTML = html
+        if (html.trim().length > 0) {
           optionsTarget.showPopover()
         }
       })
@@ -41,12 +41,4 @@ export default class extends Controller {
       })
   }
 
-  buildOptions(airports) {
-    return airports.map(airport => 
-      `<el-option value="${airport.iata_code}" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
-        <div class="font-medium">${airport.name}</div>
-        <div class="text-gray-500 text-xs">${airport.iata_code} - ${airport.city}, ${airport.country}</div>
-      </el-option>`
-    ).join("")
-  }
 }

@@ -8,7 +8,8 @@
       "Bash(bin/rails test:system:*)",
       "Bash(bin/rails test:*)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "Bash(bin/rails runner:*)"
     ],
     "deny": []
   }
