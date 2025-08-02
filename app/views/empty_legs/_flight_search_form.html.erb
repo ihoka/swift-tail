@@ -1,0 +1,148 @@
+<!-- Flight Search Form -->
+<form class="space-y-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <!-- From Autocomplete -->
+    <div>
+    <label for="from-airport" class="block text-sm font-medium text-gray-700 mb-2">From</label>
+    <el-autocomplete>
+        <div class="relative">
+        <input
+            id="from-airport"
+            name="from"
+            type="text"
+            placeholder="Departure airport"
+            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 pr-10">
+        <button type="button" class="absolute inset-y-0 right-0 flex items-center px-3">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        </div>
+
+        <el-options popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
+        <el-option value="JFK" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">John F. Kennedy International Airport</div>
+            <div class="text-gray-500 text-xs">JFK - New York, NY</div>
+        </el-option>
+        <el-option value="LAX" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Los Angeles International Airport</div>
+            <div class="text-gray-500 text-xs">LAX - Los Angeles, CA</div>
+        </el-option>
+        <el-option value="ORD" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">O'Hare International Airport</div>
+            <div class="text-gray-500 text-xs">ORD - Chicago, IL</div>
+        </el-option>
+        <el-option value="MIA" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Miami International Airport</div>
+            <div class="text-gray-500 text-xs">MIA - Miami, FL</div>
+        </el-option>
+        <el-option value="DFW" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Dallas/Fort Worth International Airport</div>
+            <div class="text-gray-500 text-xs">DFW - Dallas, TX</div>
+        </el-option>
+        <el-option value="SFO" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">San Francisco International Airport</div>
+            <div class="text-gray-500 text-xs">SFO - San Francisco, CA</div>
+        </el-option>
+        <el-option value="LAS" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">McCarran International Airport</div>
+            <div class="text-gray-500 text-xs">LAS - Las Vegas, NV</div>
+        </el-option>
+        <el-option value="ATL" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Hartsfield-Jackson Atlanta International Airport</div>
+            <div class="text-gray-500 text-xs">ATL - Atlanta, GA</div>
+        </el-option>
+        </el-options>
+    </el-autocomplete>
+    </div>
+
+    <!-- To Autocomplete -->
+    <div>
+    <label for="to-airport" class="block text-sm font-medium text-gray-700 mb-2">To</label>
+    <el-autocomplete>
+        <div class="relative">
+        <input
+            id="to-airport"
+            name="to"
+            type="text"
+            placeholder="Destination airport"
+            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2 pr-10">
+        <button type="button" class="absolute inset-y-0 right-0 flex items-center px-3">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        </div>
+
+        <el-options popover anchor="bottom start" class="w-(--input-width) bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto z-10 transition transition-discrete data-closed:opacity-0 data-enter:duration-75 data-enter:ease-out data-leave:duration-100 data-leave:ease-in">
+        <el-option value="JFK" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">John F. Kennedy International Airport</div>
+            <div class="text-gray-500 text-xs">JFK - New York, NY</div>
+        </el-option>
+        <el-option value="LAX" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Los Angeles International Airport</div>
+            <div class="text-gray-500 text-xs">LAX - Los Angeles, CA</div>
+        </el-option>
+        <el-option value="ORD" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">O'Hare International Airport</div>
+            <div class="text-gray-500 text-xs">ORD - Chicago, IL</div>
+        </el-option>
+        <el-option value="MIA" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Miami International Airport</div>
+            <div class="text-gray-500 text-xs">MIA - Miami, FL</div>
+        </el-option>
+        <el-option value="DFW" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Dallas/Fort Worth International Airport</div>
+            <div class="text-gray-500 text-xs">DFW - Dallas, TX</div>
+        </el-option>
+        <el-option value="SFO" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">San Francisco International Airport</div>
+            <div class="text-gray-500 text-xs">SFO - San Francisco, CA</div>
+        </el-option>
+        <el-option value="LAS" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">McCarran International Airport</div>
+            <div class="text-gray-500 text-xs">LAS - Las Vegas, NV</div>
+        </el-option>
+        <el-option value="ATL" class="block px-4 py-3 text-sm text-gray-900 hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-50 focus:text-blue-700 focus:outline-none cursor-pointer transition-colors duration-150 ease-in-out">
+            <div class="font-medium">Hartsfield-Jackson Atlanta International Airport</div>
+            <div class="text-gray-500 text-xs">ATL - Atlanta, GA</div>
+        </el-option>
+        </el-options>
+    </el-autocomplete>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <!-- Departure Date -->
+    <div>
+    <label for="departure-date" class="block text-sm font-medium text-gray-700 mb-2">Departure</label>
+    <input
+        id="departure-date"
+        name="departure"
+        type="date"
+        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2">
+    </div>
+
+    <!-- Return Date -->
+    <div>
+    <label for="return-date" class="block text-sm font-medium text-gray-700 mb-2">Return</label>
+    <input
+        id="return-date"
+        name="return"
+        type="date"
+        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-2 focus:ring-offset-2">
+    </div>
+</div>
+
+<!-- Search Button -->
+<div class="flex justify-center">
+    <button
+    type="submit"
+    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+    <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    </svg>
+    Search Flights
+    </button>
+</div>
+</form>

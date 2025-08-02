@@ -78,6 +78,13 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.20)
     benchmark (0.4.1)
+    better_html (2.1.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bigdecimal (3.2.2)
     bindex (0.8.1)
     bootsnap (1.18.6)
@@ -106,6 +113,13 @@ GEM
     enveloop (0.2.0)
       faraday
     erb (5.0.2)
+    erb_lint (0.9.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop (>= 1)
+      smart_properties
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
@@ -305,6 +319,7 @@ GEM
     sentry-ruby (5.26.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
+    smart_properties (1.17.0)
     solid_cable (3.0.11)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -391,6 +406,7 @@ DEPENDENCIES
   csv (~> 3.3)
   debug
   enveloop (~> 0.2.0)
+  erb_lint
   factory_bot_rails (~> 6.0)
   importmap-rails
   jbuilder
