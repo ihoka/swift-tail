@@ -1,13 +1,15 @@
 {
-      "permissions": {
-            "allow": [
-                  "Bash(bundle install:*)",
-                  "Bash(mkdir:*)",
-                  "Bash(find:*)",
-                  "Bash(convert:*)",
-                  "Bash(bin/rails test:system:*)",
-                  "Bash(bin/rails test:*)"
-            ],
-            "deny": []
-      }
+  "permissions": {
+    "allow": [
+      "Bash(bundle install:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(convert:*)",
+      "Bash(bin/rails test:system:*)",
+      "Bash(bin/rails test:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs"
+    ],
+    "deny": []
+  }
 }
